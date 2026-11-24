@@ -1,106 +1,53 @@
-Hostel Maintenance Priority System
+# Hostel Management — Hostel Maintenance Priority System
 
-A lightweight, role-based web application built with Python and Streamlit to streamline hostel maintenance complaint registration, priority classification, and real-time status tracking.
+A lightweight web application built with **Python** and **Streamlit** to streamline hostel maintenance complaint registration, priority classification, and real-time resolution tracking for students and hostel wardens.
 
-Overview
+---
 
-In university hostels, maintenance requests are often handled manually without evaluating urgency or severity. This application separates Student and Warden workflows using role-based tabs, automatically computes a priority level (HIGH, MEDIUM, or LOW) for every complaint, and allows wardens to update repair statuses in real time.
+## Key Features
 
-Key Features
+- **Role-Based Access Control (Login Tab):**
+  - **Student Login:** Direct access to submit new maintenance complaints and track complaint statuses.
+  - **Warden Login:** Password-protected access (`warden123`) to view all complaints and update repair statuses.
+- **Automated Priority Scoring (`calculate_priority`):**
+  - Calculates priority dynamically using `score = urgency * severity` (both rated on a 1–5 scale).
+  - Classifies issues into **HIGH** (`score >= 15`), **MEDIUM** (`score >= 8`), or **LOW** (`score < 8`).
+- **Student Complaint Registration & Tracking (Student Tab):**
+  - Captures Student Name, Block Number, Room Number, Problem Category (`Electrical`, `Plumbing`, `Furniture`, `Internet`, `Other`), Description, Urgency, and Severity.
+  - Validates required fields (`Student Name` and `Room Number`) before saving.
+  - Displays live complaint cards with color-coded status indicators (`Pending`, `In Progress`, `Resolved`).
+- **Warden Management Dashboard (Warden Tab):**
+  - Displays all submitted student complaints with full details and priority labels.
+  - Allows wardens to update each complaint's status in real time via `st.session_state`.
 
-Role-Based Login (Login Tab):
+---
 
-Student Access: Instant login without a password to log and track complaints.
+## Tech Stack & Python Concepts Used
 
-Warden Access: Password-protected login (warden123) to manage and update all submitted complaints.
+- **Language:** Python 3
+- **Framework:** Streamlit (`st.tabs`, `st.selectbox`, `st.text_input`, `st.slider`, `st.session_state`)
+- **Core Concepts:** User-defined functions (`calculate_priority`), conditional logic (`if-elif-else`), `for` loops, lists of dictionaries, and session state management.
 
-Automated Priority Calculation:
+---
 
-Computes a priority score using score = urgency * severity (both rated on a 1–5 scale):
+## How to Run Locally
 
-HIGH: score >= 15
+1. **Clone the repository:**
+   git clone https://github.com/sumit-net/Hostel-Management_.git
+   cd Hostel-Management_
 
-MEDIUM: score >= 8
+2. **Install Streamlit:**
+   pip install streamlit
 
-LOW: score < 8
+3. **Run the application:**
+   streamlit run app.py
 
-Student Complaint Portal (Student Tab):
+---
 
-Submit complaints across five categories: Electrical, Plumbing, Furniture, Internet, and Other.
+## Team Members (Bennett University — 2026CSAE100)
 
-Validates mandatory fields (Student Name and Room Number) before saving.
-
-Displays live complaint cards with color-coded status alerts (Pending, In Progress, Resolved).
-
-Warden Management Dashboard (Warden Tab):
-
-Displays all active student complaints along with their computed priority levels.
-
-Allows the warden to update any complaint's status (Pending, In Progress, Resolved) dynamically.
-
-Tech Stack
-
-Language: Python 3.x
-
-Framework: Streamlit
-
-State Management: streamlit.session_state (in-memory session persistence)
-
-Installation & How to Run
-
-Clone the repository:
-
-git clone https://github.com/<your-username>/Hostel-Management_.git
-cd Hostel-Management_
-
-
-Install Streamlit:
-
-pip install streamlit
-
-
-Run the application:
-
-streamlit run app.py
-
-
-Open in browser:
-Navigate to http://localhost:8501 if it does not open automatically.
-
-Usage Guide
-
-Login Tab:
-
-Select Student and click Login to access the complaint form.
-
-Select Warden, enter the default password (warden123), and click Login to access the admin dashboard.
-
-Student Tab:
-
-Fill in your Name, Block Number, Room Number, Category, Description, Urgency (1–5), and Severity (1–5), then click Submit Complaint.
-
-Scroll down to My Complaints to monitor the live status of your submitted requests.
-
-Warden Tab:
-
-Review all complaints, choose a new status from the Update Status dropdown, and click Update.
-
-Team Members (Bennett University — 2026CSAE100)
-
-Aditya Pandey (Team Leader)
-
-Sumit Verma (S26CSEU2563)
-
-Ritik Agarwal (S26CSEU2546)
-
-Anirudh Sharma (S26CSEU2454)
-
-Devansh Tiwari (S26CSEU2556)
-
-Future Improvements
-
-Persist complaints to a CSV file or SQLite database so records remain saved across server restarts.
-
-Sort complaints automatically from HIGH to LOW priority on the Warden dashboard.
-
-Add unique Complaint IDs (CMP-XXXX) to prevent widget key collisions when the same student submits multiple complaints for the same room.
+- **Aditya Pandey** (Team Leader)
+- **Sumit Verma** (`S26CSEU2563`)
+- **Ritik Agarwal** (`S26CSEU2546`)
+- **Anirudh Sharma** (`S26CSEU2454`)
+- **Devansh Tiwari** (`S26CSEU2556`)
